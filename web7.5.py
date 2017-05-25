@@ -21,6 +21,7 @@ class snmpHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         message = "Hello world!"
         # Write content as utf-8 data
         self.wfile.write(bytes(message, "utf8"))
+        self.wfile.write(image)
         return
 
 def run():
