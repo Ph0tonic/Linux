@@ -12,23 +12,42 @@ class snmpHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         # Send response status code
         self.send_response(200)
 
-        # Send headers
-        #changer en SVG
-        self.send_header('Content-type','text/html')
-        self.end_headers()
+        print (self.path)
+        if self.path == "/graph.svg":
+            #SVG binaire
+            #self.send_header('Content-type','image/svg')
+            #svgFile = open('graph.svg', 'rb')
+            #svg xml
+            self.send_header('Content-type','image/svg+xml')
+            svgFile = open('graph.svg', 'r')
+            self.end_headers()
+            self.wfile.write(bytes(svgFile.read(), 'utf8'))
+            svgFile.close()
+        else :
+            self.send_header('Content-type','text/html')
+            message = '''<!DOCTYPE html>
+                <html>
+                <head>
+                <title>Nombre de paquets envoy&eacute;s au temps t</title>
+                </head>
+                <body>
+                <h1>Nombre de paquets envoy&eacute;s au temps t</h1>
+                <p><object data="/graph.svg" type="image/svg+xml">
+                </object>
+                </p>
+                </body>
+                </html>'''
+            self.end_headers()
+            self.wfile.write(bytes(message, 'utf8'))
 
-        # Send message back to client
-        message = "Hello world!"
         # Write content as utf-8 data
-        self.wfile.write(bytes(message, "utf8"))
+
         return
 
 
 def run():
     print('starting server...')
 
-    # Server settings
-    # Choose port 8080, for port 80, which is normally used for a http server, you need root access
     server_address = ('127.0.0.1', 80)
     httpd = HTTPServer(server_address, snmpHTTPServer_RequestHandler)
     print('running server...')
@@ -36,36 +55,3 @@ def run():
 
 
 run()
-
-
-
-'''
-Données à retourner, soit SVG
-
-<svg version="1.1"
-baseprofile="full"
-xmlns="http://www.w3.org/2000/svg"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-xmlns:ev="http://www.w3.org/2001/xml-events">
-<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4"
-fill="yellow" />
-</svg>
-
-
-Sinon retourner l’HTML suivant, qui réfère le chemin du SVG ci-dessus :
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Graphe</title>
-</head>
-<body>
-<h1>Graphe</h1>
-<p><object data="/graph.svg" type="image/svg+xml">
-</object>
-</p>
-</body>
-</html>
-
-'''
