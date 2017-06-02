@@ -13,7 +13,7 @@ class SnmpTool:
         self.port = port
         self.log_filename = log_filename
         self.engine = SnmpEngine()                              # Coeur de pySNMP
-        self.community = CommunityData('public', mpModel=0)     # Communauté
+        self.community = CommunityData('public', mpModel=0)     # Communaute
         self.transport = UdpTransportTarget((ip,port))          # Protocole couche 4 : UDP
         self.logfile = open(log_filename, 'a')
 
@@ -23,16 +23,16 @@ class SnmpTool:
                                                                 self.transport, ContextData(),
                                                                 object_type_id))
 
-        # Gestion des erreurs et affichage du résultat si OK
+        # Gestion des erreurs et affichage du resultat si OK
         if err_indic:
             print(err_indic)
         else:
             if err_stat:
                 print('bug')
             else:
-                # ajout des données dans le fichier
+                # ajout des donnees dans le fichier
                 for name, val in var_binds:
-                    print ("test")
+                    print ("Lecture des octets de l'interface reussie")
                     self.logfile.write(str(int(time())) + ' %s\n' % ( val.prettyPrint()))
 
 
