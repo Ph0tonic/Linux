@@ -1,10 +1,10 @@
+#!/usr/bin/env python3
 #!/usr/bin/env python
 
-#!/usr/bin/env python3
-
-# Description : Serveur web qui permet l'affichage du graphique
+# Description : Serveur web qui permet de renvoyer une page html
+#               avec un graphique d'un fichier svg
 # Auteurs : Lucas Bulloni, Malik Fleury et Bastien Wermeille
-# Data : 02.06.2017
+# Date : 02.06.2017
 # Version : 1.0
 
 #SOURCE CODE FROM https://daanlenaerts.com/blog/2015/06/03/create-a-simple-http-server-with-python-3/
@@ -14,7 +14,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 # HTTPRequestHandler class
 class snmpHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
-    # GET , réécriture de la fonction de l'objet BaseHTTPRequestHandler
+    # GET , reecriture de la fonction de l'objet BaseHTTPRequestHandler
     def do_GET(self):
         # Send response status code
         self.send_response(200)
@@ -26,7 +26,7 @@ class snmpHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(bytes(svgFile.read(), 'utf8'))
             svgFile.close()
         else :
-            #envoie du text si c'est une autre page que l'image qui est demandé
+            #envoie du text si c'est une autre page que l'image qui est demande
             self.send_header('Content-type','text/html')
             #code HTML
             message = '''<!DOCTYPE html>
@@ -48,7 +48,7 @@ class snmpHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
         return
 
-#fonction du démarrage du server web - REQUIERT DROIT SUDO CAR PORT 80
+#fonction du demarrage du server web - REQUIERT DROIT SUDO CAR PORT 80
 def run():
     print('starting server...')
 
@@ -57,5 +57,5 @@ def run():
     print('running server...')
     httpd.serve_forever()
 
-#démarrage du server
+#demarrage du server
 run()

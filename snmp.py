@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
+#!/usr/bin/env python
+
+# Description : Serveur snmp qui permet d'effectuer des requêtes SNMP
+#               sur un équipement réseau et qui va enregistrer
+#               les données dans un fichier "historique"
+# Auteurs : Lucas Bulloni, Malik Fleury et Bastien Wermeille
+# Date : 02.06.2017
+# Version : 1.0
+
+#SOURCE CODE FROM https://makina-corpus.com/blog/metier/2016/initiation-a-snmp-avec-python-pysnmp-partie2
+#                 http://pysnmp.sourceforge.net/docs/hlapi/asyncore/sync/manager/cmdgen/getcmd.html
 
 from threading import Timer
 from time import time
 from pysnmp.hlapi import *
 from pysnmp.smi.view import MibViewController
 
-
 class SnmpTool:
-
     def __init__(self,ip,port, log_filename):
         self.ip = ip
         self.port = port
@@ -30,7 +39,7 @@ class SnmpTool:
             if err_stat:
                 print('bug')
             else:
-                # ajout des donnees dans le fichier
+                # Ajout des donnees dans le fichier
                 for name, val in var_binds:
                     print ("Lecture des octets de l'interface reussie")
                     self.logfile.write(str(int(time())) + ' %s\n' % ( val.prettyPrint()))

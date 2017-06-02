@@ -4,7 +4,7 @@
 #               contenant un graphique a partir d'un fichier historique
 #               stockant les donnees du serveur snmp
 # Auteurs : Lucas Bulloni, Malik Fleury et Bastien Wermeille
-# Data : 02.06.2017
+# Date : 02.06.2017
 # Version : 1.0
 
 import matplotlib.pyplot as plt
