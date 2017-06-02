@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 #!/usr/bin/env python
 
-# Description : Serveur snmp qui permet d'effectuer des requêtes SNMP
-#               sur un équipement réseau et qui va enregistrer
-#               les données dans un fichier "historique"
+# Description : Serveur snmp qui permet d'effectuer des requetes SNMP
+#               sur un equipement reseau et qui va enregistrer
+#               les donnees dans un fichier "historique"
 # Auteurs : Lucas Bulloni, Malik Fleury et Bastien Wermeille
 # Date : 02.06.2017
 # Version : 1.0
