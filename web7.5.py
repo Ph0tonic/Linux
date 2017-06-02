@@ -11,7 +11,7 @@ class snmpHTTPServer_RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Send response status code
         self.send_response(200)
-        
+
         # Send headers
         #changer en SVG
         self.send_header('Content-type','text/html')
@@ -36,3 +36,36 @@ def run():
 
 
 run()
+
+
+
+'''
+Données à retourner, soit SVG
+
+<svg version="1.1"
+baseprofile="full"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:ev="http://www.w3.org/2001/xml-events">
+<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4"
+fill="yellow" />
+</svg>
+
+
+Sinon retourner l’HTML suivant, qui réfère le chemin du SVG ci-dessus :
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Graphe</title>
+</head>
+<body>
+<h1>Graphe</h1>
+<p><object data="/graph.svg" type="image/svg+xml">
+</object>
+</p>
+</body>
+</html>
+
+'''

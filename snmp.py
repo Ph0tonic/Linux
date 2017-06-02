@@ -26,8 +26,8 @@ def snmp_read_counter_bytes():
         if errStat:
             print('bug')
         else:
+            # ajout des données dans le fichier
             for name, val in varBinds:
                 print('%s = %s' % (name.prettyPrint(), val.prettyPrint()))
 
 snmp_read_counter_bytes()
-
