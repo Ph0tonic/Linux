@@ -32,7 +32,7 @@ class SnmpTool:
             else:
                 # ajout des donnees dans le fichier
                 for name, val in var_binds:
-                    print ("test")
+                    print ("Lecture des octets de l'interface reussie")
                     self.logfile.write(str(int(time())) + ' %s\n' % ( val.prettyPrint()))
 
 
