@@ -4,7 +4,7 @@ FROM debian
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
 && apt-get -y install python3 \
-python3-pysnmp4 python-pysnmp4-mibs \
+python-pysnmp4 python-pysnmp4-mibs \
 python-matplotlib
 # clean up
 RUN apt-get clean
